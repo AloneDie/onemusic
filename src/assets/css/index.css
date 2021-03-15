@@ -1,0 +1,259 @@
+/* 头部logo */
+.header .logo{
+    background: no-repeat url("../images/logo.jpg");
+    background-size: 50%;
+    background-position: center center;
+    height: 70px;
+    line-height: 20em;
+    overflow: hidden;
+    margin-right: 25px;
+}
+
+/* 导航栏 */
+.nav ul li{
+    margin: 0 20px;
+    padding: 0 20px;
+    line-height: 70px;
+}
+.nav ul li.active{
+    background-color: rgb(12, 99, 99);
+    color: #fff;
+}
+.nav ul li:not([class="active"]):hover a{
+    color: rgb(12, 99, 99);
+}
+.nav ul li a{
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* 搜索 */
+.header .search{
+    margin-top: 15px;
+    margin-left: 30px;
+    box-shadow: 0 0 0 1px rgba(12,99,99,.6);
+    border-radius: .4em;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+}
+.header .search input{
+    width: 150px;
+    height: 30px;
+    letter-spacing: 1px;
+    color: rgb(12, 99, 99);
+    font-weight: 600;
+}
+.header .search button{
+    font-size: 1.25em;
+    vertical-align: middle;
+    color: rgb(12,99,99);
+
+}
+
+
+/* 登录注册 */
+.header .login{
+    margin-right: 30px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(12, 99, 99);
+}
+.header .login i{
+    display: block;
+    padding-right: 20px;
+    line-height: 70px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    font-weight: 700;
+    color: currentColor;
+}
+
+/* 轮播图 */
+.carousel{
+    height: 285px;
+    position: relative;
+    margin-bottom: 50px;
+}
+.carousel .blur{
+    width: 100%;
+    height: 285px;
+    float: left;
+    filter: blur(5px);
+    background: url("../images/carousel-1.jpg") ;
+    background-repeat:no-repeat;
+    background-position: left top;
+    background-size: 100%;
+    object-fit: fill;
+    border-radius: 10px;
+}
+.carousel .warper{
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    z-index: 9999;
+}
+.carousel .warper img{
+    display: inline-block;
+    height: 285px;
+    filter: blur(0);
+    box-shadow: 0 0 10px 3px #000;
+    border-radius: 10px;
+    user-select: none;
+}
+.carousel .warper:hover  .carLeft,
+.carousel .warper:hover .carRight{
+    transition: all .5s;
+    display: block;
+}
+
+.carousel .warper i,
+.carousel .warper ul{
+    position: absolute;
+    font-size: 26px;
+}
+/* 左右箭头 */
+.carousel .warper .carLeft,
+.carousel .warper .carRight{
+    top: 50%;
+    transform: translateY( -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(197, 197, 197, .5);
+    text-align: center;
+    line-height: 60px;
+    display: none;
+    transition: all .5s;
+    cursor: pointer;
+}   
+.carousel .warper .carLeft{
+    left: 0;
+}
+.carousel .warper .carRight{
+    right: 0;
+}
+/* 点点 */
+.carousel .warper ul{
+    bottom: .3em;
+    left:50%;
+    transform: translate(-50%);
+}
+.carousel .warper ul li{
+    margin: 0 20px;
+    width: .5em;
+    height: .5em;
+    border-radius: 50%;
+    background-color: rgba(197, 197, 197, .5);
+}
+.carousel .warper ul .active{
+    background-color: rgba(12,99,99,.9);
+}
+
+/* 主要区域 */
+.aside{
+    padding-top: 20px;
+    border-top: 1px solid rgba(197, 197, 197, .5) ;
+}
+/* 歌单推荐 */
+.aside .songList{
+    margin: 20px;
+    margin-top: 0px;
+    width: 350px;
+    text-align: center;
+}
+.aside .songList h2.icon-yinle{
+    font-size: 20px;
+    color: rgb(12,99,99);
+}
+.aside .songList ul li{
+    margin: 10px;
+    margin-left: 20px;
+    width: 140px;
+    position: relative;
+    overflow: hidden;
+}
+.aside .songList ul li .zhuanji{
+    display: block;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.aside .songList ul li img{
+    width: 140px;
+    height: 140px;
+    transition: transform .6s;
+    border-radius: 5px;
+}
+
+.aside .songList ul li:hover img{
+    transform: scale(1.2);
+}
+.aside .songList ul li .songName::after,
+.aside .songList ul li .songName::before{
+    display: block;
+    padding: 0 5px;
+    height: 20px;
+    background-color:rgba(0, 0, 0, 0.445);
+    position: absolute;
+    bottom: 23px;
+    color: rgb(150, 149, 149);
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.aside .songList ul li .songName::after{
+    content: "\e627 135968965151" ;
+    text-align: left;
+    width: 50%;
+    left: 0;
+    border-bottom-left-radius: 5px;
+}
+.aside .songList ul li .songName::before{
+    content: "\e696 " ;
+    text-align: right;
+    width: 50%;
+    right: 0;
+    border-bottom-right-radius: 5px;
+}
+/* 底部信息 */
+.footer{
+    margin-top: 20px;
+    border-top:1px solid rgb(197, 197, 197, .5)
+}
+.footer .mian{
+    padding: 15px;
+    color: rgb(92, 88, 88);
+    font-size: 12px;
+}
+.footer .mian ul li{
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+.footer .mian span{
+    display: inline-block;
+    padding: 5px 0;
+}
+.information{
+    position: fixed;
+    width: 12.5em;
+    height: 1.7em;
+    background-color: #fff;
+    bottom: 0;
+    right: 10em;
+    font-size: 12px;
+    box-shadow: 0 0 15px 3px rgb(196, 195, 195);
+    border: 1px solid rgba(1196, 196, 196, .3);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    line-height: 1.5;
+    padding: 0 3px;
+    text-align: center;
+}

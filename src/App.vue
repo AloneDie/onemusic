@@ -1,32 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <headers></headers>
+    <router-view />
+    <!-- 如何使用懒加载图片以及如何使用缓存机制 -->
+    <myfooter></myfooter>
   </div>
 </template>
 
+<script>
+import Headers from './components/headers.vue'
+import Myfooter from './components/myfooter'
+
+export default {
+  name: 'Home',
+  components: {
+    Headers,
+    Myfooter,
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
