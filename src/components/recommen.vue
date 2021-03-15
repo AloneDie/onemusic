@@ -19,12 +19,14 @@
 export default {
   methods: {
     open (e, song) {
-      console.log(e.target);
-      console.log(song)
       if (song.album) {
         // 如果song中含有album信息就是单曲，否则为歌单
         this.$store.commit('changeSongId', song.id)
         this.$router.push('/play')
+      }else{
+        console.log(song.id)
+        this.$store.commit('changeSongId',song.id)
+        this.$router.push('/songlist')
       }
     }
   },

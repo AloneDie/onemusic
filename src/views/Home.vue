@@ -37,7 +37,7 @@ export default {
       playlists.forEach(item => {
         this.playlists.push(item)
       });
-      console.log(this.playlists)
+      // console.log(this.playlists)
 
     })
     // 新歌
@@ -47,7 +47,6 @@ export default {
         item.coverImgUrl = item.album.picUrl
         this.newSong.push(item)
       });
-      console.log(this.newSong)
     })
     // 首页推荐
     getIndex(true).then(res => {

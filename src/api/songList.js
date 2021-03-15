@@ -13,7 +13,7 @@ export const getSongList = data => {
 export const getNewSong = data => {
     let req = {
         data,
-        url: '/top/song',
+        url: 'top/song?type=7',
     };
     return _get(req);
 };
@@ -71,3 +71,12 @@ export const getSongLrc = data => {
     };
     return _get(req);
 };
+
+// 获取歌单详情
+export const getSongDetail = data =>{
+    let req ={
+        data,
+        url: `/playlist/detail?id=${data}`
+    }
+    return _get(req)
+}

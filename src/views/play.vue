@@ -1,6 +1,6 @@
 <template>
   <div id="play" class="mian">
-    <img :src="songInfor.al.picUrl" alt />
+    <img :src="(songInfor.al.picUrl)" alt />
     <div class="songInfor">
       <h3>{{songInfor.al.name}}</h3>
       <span class="commit">我穿过所有星河</span>
@@ -11,7 +11,7 @@
         </div>
         <div class="album">
           <span class="sta">专属专辑：</span>
-          <a href>{{songAlbum.name}}</a>
+          <a href>{{this.$store.state.songAlbum.name}}</a>
         </div>
       </div>
 
@@ -21,6 +21,9 @@
         <button>分享</button>
         <button>下载</button>
       </div>
+      <div class="tiao">
+        <el-progress :percentage="playTime"></el-progress>
+      </div>
     </div>
     <div class="lyric_area">
       <ul id="lyric"></ul>
@@ -29,7 +32,7 @@
 </template>
 
 <script>
-import { getSongInfor, getSongAlbum, getSongUrl, getSongLrc } from '@/api/songList'
+import { getSongInfor, getSongAlbum, getSongUrl, getSongLrc,getSongSucc } from '@/api/songList'
 // import bus from '@/bus/bus.js'
 // 加载配置信息
 import config from '../config';
@@ -43,6 +46,7 @@ export default {
   methods: {
     play (e) {
       if (e.target.innerText != '暂停') {
+        console.log(this.audio)
         this.audio.play()
         e.target.innerText = '暂停'
       } else {
@@ -50,42 +54,58 @@ export default {
         e.target.innerText = '播放'
       }
     },
+    error() {
+      this.$message.error('目前还没有版权哦');
+      this.$router.push('/')
+    },
+    playtime(){
+      setInterval(()=>{
+        this.playTime = (this.audio.currentTime * 100 / this.audio.duration)
+        console.log(this.playTime)
+      },1000)
+    }
   },
+
   data () {
     return {
       songId: "",
       audio: '',
       songInfor: {},
       songAlbum: {},
-      songLrc: {}
+      songLrc: {},
+      playTime:10
     }
   },
   created () {
     this.songId = this.$store.state.songId
     getSongInfor(this.songId).then(value => {
       this.songInfor = value.data.songs[0]
-      //   console.log(this.songInfor)
       getSongAlbum(this.songInfor.al.id).then(value => {
         this.songAlbum = value.data.album
-        console.log(value.data.album)
+        this.$store.commit('changeSongAlbum', value.data.album)
       })
     })
   },
   mounted () {
-    getSongUrl(this.songId).then(value => {
-      this.songInfor = value.data.data[0]
-      this.audio = document.createElement('audio');
-      this.audio.src = value.data.data[0].url
-      //   let play = document.getElementById('play')
-      //   play.appendChild(this.audio)
-      console.log(this.songAlbum)
+    getSongSucc(this.songId).then(value=>{
+      console.log(value)
+      getSongUrl(this.songId).then(value => {
+        this.songInfor = value.data.data[0]
+        this.audio = document.createElement('audio');
+        this.audio.src = value.data.data[0].url
+        console.log(value.data.data[0].url)
+      }).catch(reason=>{
+        console.log(reason)
+      })
+    }).catch(()=>{
+      this.error()
     })
+    
   },
   beforeUpdate () {
+    this.playtime()
     getSongLrc(this.songId).then(value => {
-      // console.log(value.data.lrc.lyric)
       this.songLrc = createLrcObj(value.data.lrc.lyric)
-      //   console.log(this.songLrc)
       showLRC(this.songLrc, document.getElementById('lyric'))
       lyricmove(this.audio, document.getElementById('lyric'), this.songLrc)
     })
@@ -148,6 +168,7 @@ img {
 }
 #lyric .lineHigh {
   /*高亮行*/
+  font-size: 20px;
   color: red;
 }
 </style>

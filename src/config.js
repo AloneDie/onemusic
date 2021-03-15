@@ -70,7 +70,7 @@ export default {
             offset = -20; //滚动距离（应等于行高）
         //播放器
         //歌词容器列表
-        console.log(oLRC);
+        // console.log(oLRC);
         //  添加歌词到标签内
         function showLRC() {
             var s = '';
@@ -80,6 +80,7 @@ export default {
             }
             lyric.innerHTML = s;
         }
+        showLRC()
         //高亮显示歌词当前行及文字滚动控制，行号为lineNo
         function lineHigh() {
             var lis = lyric.getElementsByTagName('li'); //歌词数组
@@ -100,10 +101,9 @@ export default {
             lyric.style.transform = 'translateY(0)';
             lineNo = 0;
         }
-
+            
         //监听播放器的timeupdate事件，实现文字与音频播放同步
         audio.ontimeupdate = function() {
-            showLRC();
             if (lineNo == oLRC.ms.length) return;
             var curTime = audio.currentTime; //播放器时间
             if (parseFloat(oLRC.ms[lineNo].t) <= curTime) {
