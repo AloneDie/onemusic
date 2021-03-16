@@ -7,9 +7,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 引入moment
+import moment from 'moment';
+Vue.prototype.$moment = moment;
 
-//引入bus 
-Vue.prototype.$EventBus = new Vue()
+//引入bus
+Vue.prototype.$EventBus = new Vue();
 
 Vue.config.productionTip = false;
 

@@ -2,7 +2,7 @@
   <div class="songList fl iconfont">
     <h2 class="icon-yinle">{{name}}</h2>
     <ul class="clearfix">
-      <li v-for="(item, index) in lists" :key="index" @click.stop.prevent="open($event,item)">
+      <li v-for="(item, index) in lists" :key="index" @click.prevent="open($event,item)">
         <a class="zhuanji" href>
           <img :src="item.coverImgUrl" alt />
           <div class="player">
@@ -23,9 +23,9 @@ export default {
         // 如果song中含有album信息就是单曲，否则为歌单
         this.$store.commit('changeSongId', song.id)
         this.$router.push('/play')
-      }else{
+      } else {
         console.log(song.id)
-        this.$store.commit('changeSongId',song.id)
+        this.$store.commit('changeSongId', song.id)
         this.$router.push('/songlist')
       }
     }
