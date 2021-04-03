@@ -4,7 +4,9 @@
     <div class="nav fl" id="nav">
       <ul class="clearfix" id="navMeau" @click="active">
         <li class="active">
-          <a href="#">我的音乐</a>
+          <a href>
+            <router-link to="/">我的音乐</router-link>
+          </a>
         </li>
         <li>
           <a href="#">榜单</a>
@@ -13,7 +15,9 @@
           <a href="#">音乐人</a>
         </li>
         <li>
-          <a href="#">客户中心</a>
+          <a href="javascipt(viod:0)">
+            <router-link to="/myUser">客户中心</router-link>
+          </a>
         </li>
       </ul>
     </div>
@@ -23,7 +27,9 @@
     </div>
     <div class="login fr clearfix">
       <i class="iconfont icon-vip fl">VIP</i>
-      <i class="iconfont icon-login fr">登录</i>
+      <i class="iconfont icon-login fr">
+        <router-link to="/Login">登录</router-link>
+      </i>
     </div>
   </header>
 </template>

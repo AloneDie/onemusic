@@ -22,9 +22,13 @@ export default {
       if (song.album) {
         // 如果song中含有album信息就是单曲，否则为歌单
         this.$store.commit('changeSongId', song.id)
+        // 存入sessionStorae
+        sessionStorage.setItem('songId', song.id)
         this.$router.push('/play')
       } else {
         console.log(song.id)
+        // 歌单存入
+        sessionStorage.setItem('songListId', song.id)
         this.$store.commit('changeSongId', song.id)
         this.$router.push('/songlist')
       }

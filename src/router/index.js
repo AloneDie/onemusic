@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Login from '../views/login.vue';
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,9 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home,
+        meta: {
+            title: '首页',
+        },
     },
     {
         path: '/play',
@@ -20,9 +24,23 @@ const routes = [
     },
     {
         path: '/songlist',
-        name:'songlist',
-        component: ()=> import(/* webpackChunkName: "about" */ '../views/songList.vue')
-    }
+        name: 'songlist',
+        component: () => import(/* webpackChunkName: "about" */ '../views/songList.vue'),
+    },
+    {
+        path: '/myUser',
+        name: 'myUser',
+        component: () => import(/* webpackChunkName: "myUser" */ '../views/User.vue'),
+        meta: {
+            title: '',
+            requireAuth: true, // 添加该字段，表示进入这个路由是需要登录的
+        },
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+    },
 ];
 
 const router = new VueRouter({

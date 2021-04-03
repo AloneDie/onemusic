@@ -1,5 +1,5 @@
 <template>
-  <div id="songList">
+  <div id="songList" v-if="isShow">
     <div class="mian">
       <img :src="songListInfor.playlist.coverImgUrl" alt="歌单图片" />
       <div class="songInfor">
@@ -21,12 +21,15 @@
           <el-tag
             v-for="(tags,index) in songListInfor.playlist.creator.expertTags"
             :key="index"
-          >{{tag[index]}}</el-tag>
+          >{{tags}}</el-tag>
         </div>
         <div class="direction">
-          <p>描述</p>
+          <span style="font-weight:700">描述：</span>
+          <span>{{songListInfor.playlist.description}}</span>
         </div>
-        <div class="songs"></div>
+        <div class="songs">
+          <div v-for="item in trackIds" :key="item.id">{{item.id}}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -38,7 +41,9 @@ export default {
   data () {
     return {
       songListId: undefined,
-      songListInfor: {}
+      songListInfor: {},
+      isShow: false,
+      trackIds: []
     }
   },
   computed: {
@@ -47,10 +52,15 @@ export default {
     }
   },
   created () {
-    this.songListId = this.$store.state.songId
+    // this.songListId = this.$store.state.songId
+    this.songListId = sessionStorage.getItem('songListId')
     getSongDetail(this.songListId).then(value => {
       this.songListInfor = value.data
-    })
+      this.isShow = true;
+      console.log(value.data)
+      this.trackIds = value.data.playlist.trackIds.slice(0, 20)
+    });
+
   },
   mounted () {
   },
@@ -58,4 +68,7 @@ export default {
 </script>
 
 <style>
+#songList .mian img {
+  width: 180px;
+}
 </style>

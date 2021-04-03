@@ -73,10 +73,38 @@ export const getSongLrc = data => {
 };
 
 // 获取歌单详情
-export const getSongDetail = data =>{
-    let req ={
+export const getSongDetail = data => {
+    let req = {
         data,
-        url: `/playlist/detail?id=${data}`
-    }
-    return _get(req)
-}
+        url: `/playlist/detail?id=${data}`,
+    };
+    return _get(req);
+};
+
+// 登录接口
+export const getUserKey = data => {
+    // 获取key
+    let req = {
+        data,
+        url: `/login/qr/key`,
+    };
+    return _get(req);
+};
+
+export const getUserCreate = data => {
+    // 获取二维码
+    let req = {
+        data,
+        url: `/login/qr/create?key=${data}&&qrimg=true`,
+    };
+    return _get(req);
+};
+
+export const testStatus = data => {
+    // 检测二维码登录状态
+    let req = {
+        data,
+        url: `/login/qr/check?key=${data}`,
+    };
+    return _get(req);
+};

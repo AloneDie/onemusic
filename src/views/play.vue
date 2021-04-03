@@ -82,7 +82,8 @@ export default {
   created () {
     // 由于vuex的状态信息刷新就会失效。将存入到localstorage
     // localStorage永久有效，sessionStorage只在窗口存活期有效
-    this.songId = this.$store.state.songId
+    // this.songId = this.$store.state.songId
+    this.songId = sessionStorage.getItem('songId')
 
     getSongInfor(this.songId).then(value => {
       this.songInfor = value.data.songs[0]

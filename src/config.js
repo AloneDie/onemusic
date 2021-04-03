@@ -1,6 +1,5 @@
 export default {
     // baseURL: 'http://39.108.3.12:3000',  //后端地址
-    baseURL: 'http://127.0.0.1:3000',
     // 创建歌词对象
     createLrcObj(lrc) {
         let oLRC = {
@@ -80,7 +79,7 @@ export default {
             }
             lyric.innerHTML = s;
         }
-        showLRC()
+        showLRC();
         //高亮显示歌词当前行及文字滚动控制，行号为lineNo
         function lineHigh() {
             var lis = lyric.getElementsByTagName('li'); //歌词数组
@@ -101,7 +100,7 @@ export default {
             lyric.style.transform = 'translateY(0)';
             lineNo = 0;
         }
-            
+
         //监听播放器的timeupdate事件，实现文字与音频播放同步
         audio.ontimeupdate = function() {
             if (lineNo == oLRC.ms.length) return;

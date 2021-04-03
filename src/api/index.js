@@ -1,10 +1,10 @@
 // 加载配置信息
-import config from '../config';
+// import config from '../config';
 // 加载路由
 // import router from '@/router';
 
 // 获取配置地址
-const baseURL = config.baseURL;
+const baseURL = 'http://localhost:3000';
 
 const axios = require('axios').create({
     baseURL: baseURL, //api请求的baseURL
