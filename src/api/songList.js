@@ -57,7 +57,6 @@ export const getSongInfor = data => {
 // 获取专辑内容
 export const getSongAlbum = data => {
     let req = {
-        data,
         url: `/album?id=${data}`,
     };
     return _get(req);
@@ -82,29 +81,11 @@ export const getSongDetail = data => {
 };
 
 // 登录接口
-export const getUserKey = data => {
-    // 获取key
+export const getLogin = data => {
+    console.log(data);
     let req = {
         data,
-        url: `/login/qr/key`,
-    };
-    return _get(req);
-};
-
-export const getUserCreate = data => {
-    // 获取二维码
-    let req = {
-        data,
-        url: `/login/qr/create?key=${data}&&qrimg=true`,
-    };
-    return _get(req);
-};
-
-export const testStatus = data => {
-    // 检测二维码登录状态
-    let req = {
-        data,
-        url: `/login/qr/check?key=${data}`,
+        url: `/login`,
     };
     return _get(req);
 };

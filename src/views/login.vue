@@ -1,43 +1,44 @@
 <template>
-  <div v-if="isShow">
+  <div>
     this is a loginHtml
-    <img :src="qrImg" alt />
+    <div class="email">
+      <input type="text" name id v-model="user.email" />
+    </div>
+    <div class="password">
+      <input type="password" name id v-model="user.password" />
+    </div>
+    <div class="submit">
+      <button @click="login">登录</button>
+    </div>
   </div>
 </template>
 
 <script>
-import { getUserKey, getUserCreate, testStatus } from '../api/songList'
+import { getLogin } from '../api/songList'
+// import config from '../config'
 export default {
   created () {
-    getUserKey().then(res => {
-      let data = res.data
-      if (data.code === 200) {
-        this.uniKey = data.data.unikey
-        getUserCreate(this.uniKey).then(res => {
-          let data = res.data
-          if (data.code === 200) {
-            this.qrImg = data.data.qrimg
-            this.isShow = true
-            let timer = setInterval(() => {
-              testStatus(this.uniKey).then(res => {
-                console.log(res)
-              })
-            }, 5000)
-            console.log(timer)
-          }
-        })
-      }
-    })
+
   },
   data () {
     return {
-      uniKey: undefined,
-      qrImg: undefined,
+      user: {
+        email: "try200801@163.com",
+        password: "zjmtry99..."
+      },
       isShow: false
     }
   },
   beforeCreate () {
 
+  },
+  methods: {
+    login () {
+      console.log(this.user)
+      getLogin(this.user).then(res => {
+        console.log(res)
+      })
+    }
   }
 }
 </script>

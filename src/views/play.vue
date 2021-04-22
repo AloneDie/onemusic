@@ -2,7 +2,7 @@
   <div id="play" class="mian">
     <img :src="(songInfor.al.picUrl)" alt v-if="isShow" />
     <div class="songInfor">
-      <h3 v-if="isShow">{{songInfor.al.name}}</h3>
+      <h3 v-if="isShow">{{songInfor.name}}</h3>
       <span class="commit">我穿过所有星河</span>
       <div class="songUser">
         <div class="songer">
@@ -31,11 +31,8 @@
 
 <script>
 import { getSongInfor, getSongAlbum, getSongUrl, getSongLrc, getSongSucc } from '@/api/songList'
-// import bus from '@/bus/bus.js'
 // 加载配置信息
 import config from '../config';
-// 加载路由
-// import router from '@/router';
 
 
 
@@ -125,12 +122,13 @@ export default {
 
 <style scoped>
 img {
-  height: 260px;
+  height: 100%;
   border-radius: 50%;
 }
 #play {
   display: flex;
   justify-content: space-around;
+  height: 300px;
 }
 #play h3 {
   margin: 10px 0 0 0;
