@@ -89,17 +89,20 @@ export default {
 
 /* 搜索 */
 .header .search {
+  padding: 5px;
   margin-top: 15px;
   margin-left: 30px;
-  box-shadow: 0 0 0 1px rgba(12, 99, 99, 0.6);
-  border-radius: 0.4em;
+
   font-size: 18px;
   text-align: center;
-  padding: 5px;
+
+  box-shadow: 0 0 0 1px rgba(12, 99, 99, 0.6);
+  border-radius: 0.4em;
 }
 .header .search input {
   width: 150px;
   height: 30px;
+
   letter-spacing: 1px;
   color: rgb(12, 99, 99);
   font-weight: 600;
@@ -113,6 +116,7 @@ export default {
 /* 登录注册 */
 .header .login {
   margin-right: 30px;
+
   text-align: center;
   font-size: 20px;
   color: rgb(12, 99, 99);
@@ -120,12 +124,14 @@ export default {
 .header .login i {
   display: block;
   padding-right: 20px;
+
   line-height: 70px;
-  cursor: pointer;
+  font-weight: 700;
+  color: currentColor;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  font-weight: 700;
-  color: currentColor;
+
+  cursor: pointer;
 }
 </style>

@@ -44,6 +44,7 @@ export default {
   margin: 40px;
   margin-top: 0px;
   width: 350px;
+
   text-align: center;
 }
 .songList h2.icon-yinle {
@@ -51,25 +52,30 @@ export default {
   color: rgb(12, 99, 99);
 }
 .songList ul li {
+  position: relative;
+  float: left;
+
   margin: 10px;
   margin-left: 20px;
   width: 140px;
-  position: relative;
+
   overflow: hidden;
-  float: left;
 }
 .songList ul li .zhuanji {
+  position: relative;
   display: block;
+
   width: 140px;
   height: 140px;
   margin-bottom: 5px;
+
   overflow: hidden;
   border-radius: 5px;
-  position: relative;
 }
 .songList ul li img {
   width: 140px;
   height: 140px;
+
   transition: transform 0.6s;
   border-radius: 5px;
 }
@@ -80,7 +86,10 @@ export default {
 
 .songList ul li .songName {
   display: inline-block;
+
   width: 140px;
+
+  /* 单行打点 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -94,16 +103,19 @@ export default {
   position: absolute;
   left: 0;
   bottom: 0;
+
   width: 100%;
-  z-index: 12;
   padding: 0 5px;
   height: 20px;
-  background-color: rgba(0, 0, 0, 0.445);
+  box-sizing: border-box;
+
   text-align: left;
   color: rgb(150, 149, 149);
-  box-sizing: border-box;
+
+  background-color: rgba(0, 0, 0, 0.445);
   overflow: hidden;
   text-overflow: ellipsis;
+  z-index: 12;
 }
 .songList ul li .playCount::before {
   content: '\e627';

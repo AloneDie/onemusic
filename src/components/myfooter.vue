@@ -58,18 +58,21 @@ export default {
 }
 .information {
   position: fixed;
-  width: 12.5em;
-  height: 1.7em;
-  background-color: #fff;
   bottom: 0;
   right: 10em;
-  font-size: 12px;
-  box-shadow: 0 0 15px 3px rgb(196, 195, 195);
+
+  width: 12.5em;
+  height: 1.7em;
+  padding: 0 3px;
   border: 1px solid rgba(1196, 196, 196, 0.3);
+
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+
+  box-shadow: 0 0 15px 3px rgb(196, 195, 195);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  line-height: 1.5;
-  padding: 0 3px;
-  text-align: center;
+  background-color: #fff;
 }
 </style>
