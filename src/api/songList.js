@@ -1,23 +1,5 @@
 import { _get } from './index';
 
-// 获取歌单详情
-export const getSongList = data => {
-    let req = {
-        data,
-        url: `/top/playlist/highquality?limit=${data}`,
-    };
-    return _get(req);
-};
-
-// 获取新歌
-export const getNewSong = data => {
-    let req = {
-        data,
-        url: 'top/song?type=7',
-    };
-    return _get(req);
-};
-
 // 获取首页
 export const getIndex = data => {
     let req = {
@@ -76,16 +58,6 @@ export const getSongDetail = data => {
     let req = {
         data,
         url: `/playlist/detail?id=${data}`,
-    };
-    return _get(req);
-};
-
-// 登录接口
-export const getLogin = data => {
-    console.log(data);
-    let req = {
-        data,
-        url: `/login`,
     };
     return _get(req);
 };

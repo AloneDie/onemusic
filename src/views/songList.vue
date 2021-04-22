@@ -29,7 +29,7 @@
               :key="index"
             >{{tags}}</el-tag>
           </div>
-          <div class="direction">
+          <div class="direction" v-if="songListInfor.playlist.description">
             <span style="font-weight:700">描述：</span>
             <span class="details">{{songListInfor.playlist.description}}</span>
           </div>
@@ -41,8 +41,8 @@
           <el-table-column prop="index" label="编号" width="180"></el-table-column>
           <el-table-column prop="songTitle" label="歌曲标题" width="auto"></el-table-column>
           <el-table-column prop="name" label="歌手" width="180"></el-table-column>
-          <el-table-column prop="songList" label="专辑"></el-table-column>
-          <el-table-column prop="duration" label="时长"></el-table-column>
+          <el-table-column prop="songList" label="专辑" width="auto"></el-table-column>
+          <el-table-column prop="duration" label="时长" width="60"></el-table-column>
         </el-table>
       </div>
     </div>
@@ -54,7 +54,6 @@ import { getSongDetail, getSongInfor } from '../api/songList'
 export default {
   data () {
     return {
-      songListId: undefined,
       songListInfor: {},
       isShow: false,
       trackIds: {},
@@ -67,31 +66,35 @@ export default {
     }
   },
   created () {
-    this.songListId = sessionStorage.getItem('songListId')
-    // 获取歌单详情
-    getSongDetail(this.songListId).then(value => {
-      this.songListInfor = value.data
-      this.isShow = true;
-      let songsId = value.data.playlist.trackIds.slice(0, 20).map(item => {
+    let songListId = sessionStorage.getItem('songListId')
+    let _this = this
+    /**
+     * 使用async来进行请求数据
+     * 
+     */
+    async function asyncRequest () {
+      let result = await getSongDetail(songListId);
+      console.log(result.data)
+      _this.songListInfor = result.data
+      _this.isShow = true;
+      let songsId = result.data.playlist.trackIds.slice(0, 10).map(item => {
         return item.id
       })
 
-      // 获取歌曲详情
-      getSongInfor(songsId).then(value => {
-        value.data.songs.forEach((item, index) => {
-          this.trackIds = item
-          this.songsName.push({
-            index: index + 1,
-            songTitle: item.name,
-            name: item.ar[0].name,
-            songList: item.al.name,
-            songId: item.id,
-            duration: this.$moment(item.dt).format("mm:ss")
-          })
+      let songResult = await getSongInfor(songsId)
+      songResult.data.songs.forEach((item, index) => {
+        _this.songsName.push({
+          index: index + 1,
+          songTitle: item.name,
+          name: item.ar[0].name,
+          songList: item.al.name,
+          songId: item.id,
+          duration: _this.$moment(item.dt).format("mm:ss")
         })
       })
+    }
 
-    });
+    asyncRequest()
   },
   mounted () {
   },

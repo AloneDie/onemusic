@@ -2,7 +2,7 @@
   <div>
     <charousel :imgs="indexImg"></charousel>
     <div class="songlist clearfix mian">
-      <recommen :lists="playlists" :name="name[0]"></recommen>
+      <recommen :lists="playlists" :name="name[0]" type="list"></recommen>
       <recommen :name="name[1]" :lists="newSong"></recommen>
     </div>
   </div>
@@ -13,7 +13,7 @@ import Charousel from '../components/charousel'
 import Recommen from '../components/recommen'
 // @ is an alias to /src
 // 引入api
-import { getSongList, getNewSong, getIndex } from '@/api/songList'
+import { getIndex } from '@/api/songList'
 
 export default {
   data () {
@@ -21,7 +21,8 @@ export default {
       playlists: [],
       name: ['歌单推荐', '新歌', 'MV推荐'],
       newSong: [],
-      indexImg: []
+      indexImg: [],
+      homeInfor: null
     }
   },
   name: 'Home',
@@ -31,29 +32,34 @@ export default {
   },
   //  使用生命周期函数
   created () {
-    //  歌单推荐
-    getSongList(6).then((response) => {
-      let playlists = response.data.playlists;
-      playlists.forEach(item => {
-        this.playlists.push(item)
-      });
-      // console.log(this.playlists)
-
-    })
-    // 新歌
-    getNewSong().then(res => {
-      let playlists = res.data.data.slice(0, 6)
-      playlists.forEach(item => {
-        item.coverImgUrl = item.album.picUrl
-        this.newSong.push(item)
-      });
-    })
     // 首页推荐
     getIndex(true).then(res => {
-      let indexImg = res.data.data.blocks[0].extInfo.banners
-      indexImg.forEach(item => {
-        this.indexImg.push(item)
-      })
+      let result = res.data
+      if (result.code === 200) {
+        result = res.data.data
+        // console.log(result)
+        result.blocks.forEach(item => {
+          // 获取首页banners
+          if (item.blockCode === "HOMEPAGE_BANNER") {
+            item.extInfo.banners.forEach(item => {
+              this.indexImg.push(item)
+            })
+          } else if (item.blockCode === 'HOMEPAGE_BLOCK_PLAYLIST_RCMD') {
+            item.creatives.forEach(item => {
+              this.playlists.push(item)
+            })
+          } else if (item.blockCode === 'HOMEPAGE_BLOCK_NEW_ALBUM_NEW_SONG') {
+            let result = item.creatives.slice(0, 2)
+            this.newSong = [...result[0].resources, ...result[1].resources]
+          }
+        })
+      }
+      this.homeInfor = res.data
+      //   获取推荐歌单
+
+      //   indexImg.forEach(item => {
+      //     this.indexImg.push(item)
+      //   })
     })
   }
 

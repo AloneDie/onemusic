@@ -1,8 +1,3 @@
-// 加载配置信息
-// import config from '../config';
-// 加载路由
-// import router from '@/router';
-
 // 获取配置地址
 const baseURL = 'http://localhost:3000';
 
@@ -18,4 +13,3 @@ const axios = require('axios').create({
 export const _get = req => {
     return axios.get(req.url, { params: req.data });
 };
-// /playlist/highquality/tags

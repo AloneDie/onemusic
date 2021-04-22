@@ -4,12 +4,10 @@
     <ul class="clearfix">
       <li v-for="(item, index) in lists" :key="index" @click.prevent="open($event,item)">
         <a class="zhuanji" href>
-          <img :src="item.coverImgUrl" alt />
-          <div class="player">
-            <a href class="playCount">{{item.playCount}}</a>
-          </div>
+          <img :src="item.uiElement.image.imageUrl" alt />
+          <div class="player"></div>
         </a>
-        <a class="songName">{{item.name}}</a>
+        <a class="songName">{{item.uiElement.mainTitle.title}}</a>
       </li>
     </ul>
   </div>
@@ -19,22 +17,19 @@
 export default {
   methods: {
     open (e, song) {
-      if (song.album) {
-        // 如果song中含有album信息就是单曲，否则为歌单
-        this.$store.commit('changeSongId', song.id)
+      if (song.resourceType === 'song') {
+        console.log(song.resourceType)
         // 存入sessionStorae
-        sessionStorage.setItem('songId', song.id)
+        sessionStorage.setItem('songId', song.resourceId)
         this.$router.push('/play')
       } else {
-        console.log(song.id)
-        // 歌单存入
-        sessionStorage.setItem('songListId', song.id)
-        this.$store.commit('changeSongId', song.id)
+        console.log(song.creativeId)
+        sessionStorage.setItem('songListId', song.creativeId)
         this.$router.push('/songlist')
       }
     }
   },
-  props: ['lists', 'name']
+  props: ['lists', 'name', 'type']
 }
 </script>
 
