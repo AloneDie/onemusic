@@ -135,6 +135,7 @@ img {
 }
 #play .commit {
   display: inline-block;
+
   font-size: 12px;
   color: #bababa;
   margin-bottom: 20px;
@@ -146,12 +147,13 @@ img {
   padding-top: 30px;
 }
 #play .control button {
-  border: 1px solid #166363;
   margin-left: 10px;
   width: 68px;
   height: 30px;
-  letter-spacing: 3px;
+  border: 1px solid #166363;
+
   font-weight: 600;
+  letter-spacing: 3px;
   border-radius: 5px;
 }
 #play .control button.btn-player {

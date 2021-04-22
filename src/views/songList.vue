@@ -107,24 +107,28 @@ export default {
 
 <style>
 #songList .songListInfor {
+  display: flex;
+
   width: 100%;
   height: 291px;
-  display: flex;
-  justify-content: space-around;
   border-bottom: 1px solid transparent;
   margin-bottom: 19px;
+
+  justify-content: space-around;
 }
 
 #songList .mian .backImg {
   width: 291px;
   height: 291px;
   padding: 3px;
+
   box-shadow: 0 0 0 3px #eee;
   border-radius: 15px;
 }
 #songList .backImg img {
   width: inherit;
   height: inherit;
+
   border-radius: 15px;
 }
 
@@ -136,7 +140,9 @@ export default {
 
 #songList .direction span.details {
   display: inline-block;
+
   width: 410px;
+
   /* 多行文本打点 */
   overflow: hidden;
   text-overflow: ellipsis;

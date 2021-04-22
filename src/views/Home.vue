@@ -61,8 +61,8 @@ export default {
 </script>
 <style scoped>
 .songlist {
+  padding-top: 40px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  padding-top: 40px;
 }
 </style>
