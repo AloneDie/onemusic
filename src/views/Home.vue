@@ -39,7 +39,7 @@ export default {
         result = res.data.data
         // console.log(result)
         result.blocks.forEach(item => {
-          // 获取首页banners
+          // 获取首页banners，显示一些baner
           if (item.blockCode === "HOMEPAGE_BANNER") {
             item.extInfo.banners.forEach(item => {
               this.indexImg.push(item)
